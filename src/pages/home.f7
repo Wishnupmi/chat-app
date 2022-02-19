@@ -1,0 +1,526 @@
+<style>
+  :root {
+
+    --f7-navbar-height: 60px;
+    /* --f7-searchbar-height: 50px; */
+  }
+  .panel-left {
+    --f7-panel-width: 30%;
+    min-width: 250px;
+  }
+  .navbar {
+    --f7-navbar-bg-color: #EEE;
+    --f7-navbar-text-color: #5C5C5C;
+    --f7-navbar-border-color: #D7D0CA;
+    --f7-navbar-link-color: var(--f7-navbar-text-color);
+  }
+
+  .navbar img {
+    width: 40px;
+    border-radius: 20px;
+  }
+  .navbar .icon {
+    font-size: 28px;
+  }
+  .aurora .navbar .right a + a {
+    margin-left: 15px;
+  }
+  .panel-left {
+    border-right: 1px solid #D7D0CA;
+  }
+  .panel-left .page-content {
+    --f7-page-navbar-offset: 60px;
+  }
+  .select-chat-page {
+    --f7-list-margin-vertical: 0px;
+    /* --f7-bars-bg-color: #FFF; */
+    --f7-page-bg-color: #FFF;
+    --f7-bars-border-color: transparent;
+    --f7-navbar-font-size: 18px;
+    --f7-navbar-title-font-weight: bold;
+
+    --f7-searchbar-in-page-content-input-border-radius: 25px;
+    --f7-searchbar-inner-padding-left: 15px;
+    --f7-searchbar-inner-padding-right: 15px;
+    --f7-searchbar-input-height: 35px;
+    --f7-searchbar-input-border-radius: 18px;
+    --f7-searchbar-height: 48px;
+    --f7-searchbar-bg-color: #F8F8F8;
+    --f7-searchbar-input-bg-color: #FFF;
+    --f7-searchbar-input-text-color: #666;
+
+    --f7-list-bg-color: transparent;
+    --f7-list-border-color: #ebebeb;
+    --f7-list-item-border-color: #ebebeb;
+
+    --f7-list-item-min-height: 72px;
+    --f7-list-item-title-text-color: #474747;
+    --f7-list-item-subtitle-text-color: #666;
+    --f7-list-item-after-text-color: #666;
+    --f7-list-item-title-font-size: 16px;
+    --f7-list-link-pressed-bg-color: rgba(0,0,0,0.2);
+    --f7-list-link-hover-bg-color: rgb(235,235,235);
+    --f7-list-media-item-padding-vertical: 12px;
+    color: rgba(255,255,255,0.7);
+  }
+  .select-chat-page img {
+    width: 48px;
+    border-radius: 24px;
+  }
+  .select-chat-page .chat-menu-icon {
+    display: none;
+  }
+  .select-chat-page .item-subtitle .text-container {
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    display: inline-block;
+  }
+  .select-chat-page .item-link:hover .item-subtitle .text-container {
+    max-width: calc(100% - 15px);
+  }
+
+  .select-chat-page .item-link:hover .chat-menu-icon {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+  }
+
+  .chat-page {
+    --f7-page-bg-color: #e5ddd5;
+    --f7-navbar-subtitle-text-align: left;
+    --f7-navbar-title-margin-left: 15px;
+
+    --f7-messagebar-height: 60px;
+    --f7-messagebar-bg-color: #EEE;
+    --f7-messagebar-textarea-bg-color: #fff;
+    --f7-messagebar-textarea-height: 48px;
+    --f7-messagebar-textarea-border-radius: 24px;
+    --f7-messagebar-textarea-font-size: 16px;
+    --f7-messagebar-textarea-line-height: 40px;
+    --f7-messagebar-textarea-border: none;
+
+    --f7-messages-content-bg-color: transparent;
+    --f7-message-sent-bg-color: #dcf8c6;
+    --f7-message-sent-text-color: #262626;
+    --f7-message-received-bg-color: #fff;
+    --f7-message-received-text-color: #262626;
+    --f7-message-bubble-border-radius: 8px;
+    --f7-message-bubble-font-size: 14px;
+
+    background-image: url('img/whatsapp-bg.png');
+    background-position: center;
+    background-size: contain;
+  }
+
+  .emoji-container{
+    padding-right: 20px;
+    padding-left: 10px;
+  }
+
+  .emoji-container .icon,
+  .send-message-container .icon {
+    font-size: 25px;
+    color: #525b60;
+  }
+
+  .send-message-container {
+    padding-right: 10px;
+    padding-left: 20px;
+  }
+
+
+  .messagebar textarea::placeholder {
+    color: #b6b6b6;
+  }
+
+  .chat-page .message-bubble {
+    min-height: 35px;
+  }
+</style>
+<template>
+  <div class="page chat-page">
+    <div class="navbar">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner">
+        <!-- <div class="title">Messages</div> -->
+        <div class="left">
+          <div class="message-avatar"
+            style="background-image:url(https://asset.kompas.com/crops/W4P3no-vmu-9GnsCWwybHDufncM=/120x34:4222x2768/750x500/data/photo/2021/04/18/607ba95f8d6f7.jpg)"></div>
+          <div class="title">
+              <span>Wishnu H</span>
+              <div class="subtitle">
+                <span class="description">Programmer</span>
+              </div>
+            </div>
+        </div>
+        <div class="right">
+          <a href="#" class="link">
+            <i class="icon f7-icons">search</i>
+          </a>
+          <!-- <a href="#" class="link">
+            <i class="icon f7-icons">paperclip</i>
+          </a>
+          <a href="#" class="link">
+            <i class="icon f7-icons">ellipsis_fill</i>
+          </a> -->
+        </div>
+        
+      </div>
+    </div>
+    <div class="toolbar messagebar">
+      <div class="toolbar-inner">
+        <!-- <div class='emoji-container'>
+          <a href="#" class="link">
+            <i class="icon f7-icons">circle</i>
+          </a>
+        </div> -->
+        <div class="messagebar-area">
+          <textarea class="resizable" placeholder="Message"></textarea>
+        </div>
+        <!-- <a class="link send-link" href="#" @click=${sendMessage}>Send</a> -->
+        <div class='send-message-container'>
+          <a href="#" class="link" @click=${sendMessage}>
+            <i class="icon f7-icons">paperplane</i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="page-content messages-content">
+      <div class="messages">
+        <div class="messages-title"><b>Minggu, Feb 13,</b> 12:58</div>
+        <div class="message message-sent">
+          <div class="message-avatar"
+            style="background-image:url(https://asset.kompas.com/crops/W4P3no-vmu-9GnsCWwybHDufncM=/120x34:4222x2768/750x500/data/photo/2021/04/18/607ba95f8d6f7.jpg)"></div>
+          <div class="message-content">
+            <div class="message-name">Ibu Kucing</div>
+            <!-- <div class="message-header">Message header</div> -->
+            <div class="message-bubble">
+              <!-- <div class="message-text-header">Text header</div> -->
+              <div class="message-text">Miauw...,Miauw...</div>
+              <!-- <div class="message-text-footer">Text footer</div> -->
+            </div>
+            <!-- <div class="message-footer">Message footer</div> -->
+          </div>
+        </div>
+        <div class="message message-received">
+          <div class="message-avatar"
+            style="background-image:url(https://wartakepri.co.id/wp-content/uploads/2019/11/Masalah-kesehatan-pada-kochenk.jpg)"></div>
+          <div class="message-content">
+            <div class="message-name">Anak Kucing</div>
+            <!-- <div class="message-header">Message header</div> -->
+            <div class="message-bubble">
+              <!-- <div class="message-text-header">Text header</div> -->
+              <div class="message-text">Miauw...,Miauw....</div>
+              <!-- <div class="message-text-footer">Text footer</div> -->
+            </div>
+            <!-- <div class="message-footer">Message footer</div> -->
+          </div>
+        </div>
+        <div class="message message-sent">
+          <div class="message-content">
+            <div class="message-bubble">
+              <div class="message-text">Miauw...</div>
+            </div>
+          </div>
+        </div>
+        <div class="message message-sent">
+          <div class="message-content">
+            <div class="message-bubble">
+              <div class="message-text">Miauw...Miauw...?</div>
+            </div>
+          </div>
+        </div>
+        <div class="message message-received">
+          <div class="message-avatar"
+            style="background-image:url(https://wartakepri.co.id/wp-content/uploads/2019/11/Masalah-kesehatan-pada-kochenk.jpg)"></div>
+          <div class="message-content">
+            <div class="message-name">Anak Kucing</div>
+            <div class="message-bubble">
+              <div class="message-text">Miauw..., Miauw...!</div>
+            </div>
+            
+          </div>
+          
+        </div>
+        <div class="message message-received">
+          <div class="message-avatar"
+            style="background-image:url(https://wartakepri.co.id/wp-content/uploads/2019/11/Masalah-kesehatan-pada-kochenk.jpg)"></div>
+          <div class="message-content">
+            <div class="message-bubble">
+              <div class="message-text">Miauw..., Miauw...?</div>
+            </div>
+            
+          </div>
+          
+        </div>
+        <!-- <div class="message message-received">
+          <div class="message-avatar"
+            style="background-image:url(https://wartakepri.co.id/wp-content/uploads/2019/11/Masalah-kesehatan-pada-kochenk.jpg)"></div>
+          <div class="message-content">
+            <div class="message-name">Anak Kucing</div>
+            <div class="message-bubble">
+              <div class="message-text">Hi there, I am also fine, thanks! And how are you?</div>
+            </div>
+          </div>
+        </div> -->
+        <div class="message message-sent">
+          <div class="message-content">
+            <div class="message-bubble">
+              <div class="message-text">Miauw..., Miauw... ;)</div>
+            </div>
+          </div>
+        </div>
+        <div class="message message-sent">
+          <div class="message-content">
+            <div class="message-bubble">
+              <div class="message-text">Miauw..., Miauw... !</div>
+            </div>
+          </div>
+        </div>
+        <div class="message message-sent">
+          <div class="message-content">
+            <div class="message-bubble">
+              <div class="message-image">
+                <img src="https://cdn.framework7.io/placeholder/cats-200x260-4.jpg"
+                  style="width:200px; height: 260px" />
+              </div>
+              <div class="message-text">Miauw..., Miauw... !</div>
+            </div>
+          </div>
+        </div>
+        <div class="message message-received">
+          <div class="message-avatar"
+            style="background-image:url(https://wartakepri.co.id/wp-content/uploads/2019/11/Masalah-kesehatan-pada-kochenk.jpg)"></div>
+          <div class="message-content">
+            <div class="message-name">Anak Kucing</div>
+            <div class="message-bubble">
+              <div class="message-text">Miauw...!</div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="message message-received">
+          <div class="message-avatar"
+            style="background-image:url(https://wartakepri.co.id/wp-content/uploads/2019/11/Masalah-kesehatan-pada-kochenk.jpg)"></div>
+          <div class="message-content">
+            <div class="message-name">Anak Kucing</div>
+            <div class="message-bubble">
+              <div class="message-text">Like it very much!</div>
+            </div>
+          </div>
+        </div>
+        <div class="message message-received">
+          <div class="message-avatar"
+            style="background-image:url(https://wartakepri.co.id/wp-content/uploads/2019/11/Masalah-kesehatan-pada-kochenk.jpg)"></div>
+          <div class="message-content">
+            <div class="message-name">Anak Kucing</div>
+            <div class="message-bubble">
+              <div class="message-text">Awesome!</div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+   export default (props, { $, $f7, $el, $update, $on }) => {
+    const app = new Framework7({
+      el: '#app',
+      theme: 'aurora',
+      routes: [{
+        path: '/',
+        master: true
+      }, ],
+      navbar: {
+        iosCenterTitle: false,
+        auroraCenterTitle: false,
+      }
+    });   
+    let messages;
+    let messagebar;
+
+    // Response flag
+    var responseInProgress = false;
+
+    // Dummy response
+    var answers = [
+      'Miauw...',
+      'Miauw...miauw....',
+      'Miauw...',
+      'Miauw...Miauw...',
+      'Miauw... ?',
+      'Miauw...Miauw...',
+      'Miauw...',
+      'Miauw...Miauw... ?',
+      'Miauw... ?',
+      'Miauw...Miauw...',
+      'Miauw...',
+      'Miauw...Miauw...!!!'
+    ]
+    var people = [
+      {
+        name: 'Anak Kucing',
+        avatar: 'https://wartakepri.co.id/wp-content/uploads/2019/11/Masalah-kesehatan-pada-kochenk.jpg'
+      },
+      {
+        name: 'Anak Kucing',
+        avatar: 'https://wartakepri.co.id/wp-content/uploads/2019/11/Masalah-kesehatan-pada-kochenk.jpg'
+      }
+    ];
+
+    // Receive Message
+    const receiveMessage = () => {
+      responseInProgress = true;
+      setTimeout(function () {
+        // Get random answer and random person
+        var answer = answers[Math.floor(Math.random() * answers.length)];
+        var person = people[Math.floor(Math.random() * people.length)];
+
+        // Show typing indicator
+        messages.showTyping({
+          header: person.name + ' is typing',
+          avatar: person.avatar
+        });
+
+        setTimeout(function () {
+          // Add received dummy message
+          messages.addMessage({
+            text: answer,
+            type: 'received',
+            name: person.name,
+            avatar: person.avatar
+          });
+          // Hide typing indicator
+          messages.hideTyping();
+          responseInProgress = false;
+        }, 4000);
+      }, 1000);
+    }
+
+    // Send Message
+    const sendMessage = () => {
+      var text = messagebar.getValue().replace(/\n/g, '<br>').trim();
+      // return if empty message
+      if (!text.length) return;
+
+      // Clear area
+      messagebar.clear();
+
+      // Return focus to area
+      messagebar.focus();
+
+      // Add message to messages
+      messages.addMessage({
+        text: text,
+      });
+
+      if (responseInProgress) return;
+      // Receive dummy message
+      receiveMessage();
+    }
+
+
+
+    
+
+
+        const updateNama = (e) => {
+          nama = e.target.value;
+          $update();
+        }
+    
+        const updateTanggal = (e) => {
+          tanggal = e.target.value;
+          $update();
+        }
+    
+        const updateMessages = (e) => {
+          messages = e.target.value;
+          $update();
+        }
+    
+        
+        // const sendMessage = (e) => {
+        //   console.log(""+messages);
+        // }
+        
+
+
+
+   
+        $on('pageInit', () => {
+          console.log('page init')
+          
+
+
+
+
+          // Init Messages
+      messages = $f7.messages.create({
+        el: '.messages',
+
+        // First message rule
+        firstMessageRule: function (message, previousMessage, nextMessage) {
+          // Skip if title
+          if (message.isTitle) return false;
+          /* if:
+            - there is no previous message
+            - or previous message type (send/received) is different
+            - or previous message sender name is different
+          */
+          if (!previousMessage || previousMessage.type !== message.type || previousMessage.name !== message.name) return true;
+          return false;
+        },
+        // Last message rule
+        lastMessageRule: function (message, previousMessage, nextMessage) {
+          // Skip if title
+          if (message.isTitle) return false;
+          /* if:
+            - there is no next message
+            - or next message type (send/received) is different
+            - or next message sender name is different
+          */
+          if (!nextMessage || nextMessage.type !== message.type || nextMessage.name !== message.name) return true;
+          return false;
+        },
+        // Last message rule
+        tailMessageRule: function (message, previousMessage, nextMessage) {
+          // Skip if title
+          if (message.isTitle) return false;
+          /* if (basically same as lastMessageRule):
+          - there is no next message
+          - or next message type (send/received) is different
+          - or next message sender name is different
+        */
+          if (!nextMessage || nextMessage.type !== message.type || nextMessage.name !== message.name) return true;
+          return false;
+        }
+      });
+
+
+
+
+
+
+      // Init Messagebar
+      messagebar = $f7.messagebar.create({
+        el: '.messagebar'
+      });
+
+
+    });
+
+
+
+        return $render;
+      }
+    
+    
+    
+    </script>
+
+
+
+
