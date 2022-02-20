@@ -198,9 +198,15 @@
             </div>
         </div>
         <div class="right">
-          <a href="#" class="link">
+          <!-- <a href="#" class="link">
             <i class="icon f7-icons">search</i>
-          </a>
+          </a> -->
+
+           <!-- Link to enable searchbar -->
+        <a class="link icon-only searchbar-enable" data-searchbar=".searchbar-clinicas">
+          <i class="icon f7-icons ios-only">search_strong</i>
+          <i class="icon material-icons md-only">search</i>
+        </a>
           <!-- <a href="#" class="link">
             <i class="icon f7-icons">paperclip</i>
           </a> -->
@@ -208,7 +214,18 @@
             <i class="icon f7-icons">ellipsis_fill</i>
           </a> 
         </div>
-        
+        <!-- Searchbar is a direct child of "navbar-inner" -->
+      <form class="searchbar searchbar-expandable searchbar-init searchbar-clinicas"
+      data-search-container=".virtual-listClinicas" data-search-item="li" data-search-in=".item-title">
+        <div class="searchbar-inner">
+          <div class="searchbar-input-wrap">
+            <input type="search" placeholder="Search"/>
+            <i class="searchbar-icon"></i>
+            <span class="input-clear-button"></span>
+          </div>
+          <span class="searchbar-disable-button">Cancelar</span>
+        </div>
+      </form>
       </div>
     </div>
 
@@ -228,11 +245,11 @@
     
     <div class="toolbar messagebar">
       <div class="toolbar-inner">
-        <!-- <div class='emoji-container'>
+        <div class='emoji-container'>
           <a href="#" class="link">
             <i class="icon f7-icons">circle</i>
           </a>
-        </div> -->
+        </div>
         <div class="messagebar-area">
           <textarea class="resizable" placeholder="Message"></textarea>
         </div>
@@ -575,6 +592,18 @@
 
 
     });
+
+    
+
+    var searchbar = $f7.searchbar.create({
+  el: '.searchbar',
+  on: {
+    enable: function () {
+      console.log('Searchbar enabled')
+    }
+  }
+})
+
 
 
 
