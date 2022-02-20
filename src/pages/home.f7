@@ -3,6 +3,7 @@
 
     --f7-navbar-height: 60px;
     /* --f7-searchbar-height: 50px; */
+    --f7-popover-width: 260px;
   }
   .panel-left {
     --f7-panel-width: 30%;
@@ -95,10 +96,10 @@
     --f7-messagebar-height: 60px;
     --f7-messagebar-bg-color: #EEE;
     --f7-messagebar-textarea-bg-color: #fff;
-    --f7-messagebar-textarea-height: 48px;
-    --f7-messagebar-textarea-border-radius: 24px;
-    --f7-messagebar-textarea-font-size: 16px;
-    --f7-messagebar-textarea-line-height: 40px;
+    --f7-messagebar-textarea-height: 40px;
+    --f7-messagebar-textarea-border-radius: 20px;
+    --f7-messagebar-textarea-font-size: 14px;
+    --f7-messagebar-textarea-line-height: 28px;
     --f7-messagebar-textarea-border: none;
 
     --f7-messages-content-bg-color: transparent;
@@ -138,10 +139,51 @@
   .chat-page .message-bubble {
     min-height: 35px;
   }
+
+
+
+  /* POP OVER MENU */
+  .ios {
+  --f7-popover-border-radius: 13px;
+  --f7-popover-box-shadow: none;
+  --f7-popover-actions-icon-size: 28px;
+  --f7-popover-bg-color: rgba(255, 255, 255, 0.95);
+  --f7-popover-actions-label-text-color: rgba(0, 0, 0, 0.45);
+}
+.ios .theme-dark,
+.ios.theme-dark {
+  --f7-popover-bg-color: rgba(30, 30, 30, 0.95);
+  --f7-popover-actions-label-text-color: rgba(255, 255, 255, 0.55);
+}
+.md {
+  --f7-popover-border-radius: 4px;
+  --f7-popover-box-shadow: var(--f7-elevation-8);
+  --f7-popover-actions-icon-size: 24px;
+  --f7-popover-bg-color: #fff;
+  --f7-popover-actions-label-text-color: rgba(0, 0, 0, 0.54);
+}
+.md .theme-dark,
+.md.theme-dark {
+  --f7-popover-bg-color: #1c1c1d;
+  --f7-popover-actions-label-text-color: rgba(255, 255, 255, 0.54);
+}
+.aurora {
+  --f7-popover-border-radius: 8px;
+  --f7-popover-box-shadow: var(--f7-elevation-8);
+  --f7-popover-actions-icon-size: 24px;
+  --f7-popover-bg-color: #fff;
+  --f7-popover-actions-label-text-color: rgba(0, 0, 0, 0.6);
+}
+.aurora .theme-dark,
+.aurora.theme-dark {
+  --f7-popover-bg-color: #1c1c1d;
+  --f7-popover-actions-label-text-color: rgba(255, 255, 255, 0.6);
+}
 </style>
 <template>
+  
   <div class="page chat-page">
-    <div class="navbar">
+    <div class="navbar no-shadow">
       <div class="navbar-bg"></div>
       <div class="navbar-inner">
         <!-- <div class="title">Messages</div> -->
@@ -161,14 +203,29 @@
           </a>
           <!-- <a href="#" class="link">
             <i class="icon f7-icons">paperclip</i>
-          </a>
-          <a href="#" class="link">
-            <i class="icon f7-icons">ellipsis_fill</i>
           </a> -->
+          <a href="#" class="link popover-open" data-popover=".popover-links">
+            <i class="icon f7-icons">ellipsis_fill</i>
+          </a> 
         </div>
         
       </div>
     </div>
+
+    <div class="popover popover-links">
+      <div class="popover-inner">
+        <div class="list" style="--f7-list-button-text-align: left;--f7-list-button-font-size: 14px;
+        --f7-list-button-font-weight: 400;">
+          <ul>
+            <li><a class="list-button item-link" href="#">Link 1</a></li>
+            <li><a class="list-button item-link" href="#">Link 2</a></li>
+            <li><a class="list-button item-link" href="#">Link 3</a></li>
+            <li><a class="list-button item-link" href="#">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
     <div class="toolbar messagebar">
       <div class="toolbar-inner">
         <!-- <div class='emoji-container'>
@@ -322,22 +379,29 @@
         </div> -->
       </div>
     </div>
+    
+    
   </div>
 </template>
+<style>
+  .popover {
+    width: 200px;
+  }
+</style>
 <script>
    export default (props, { $, $f7, $el, $update, $on }) => {
-    const app = new Framework7({
-      el: '#app',
-      theme: 'aurora',
-      routes: [{
-        path: '/',
-        master: true
-      }, ],
-      navbar: {
-        iosCenterTitle: false,
-        auroraCenterTitle: false,
-      }
-    });   
+    // const app = new Framework7({
+    //   el: '#app',
+    //   theme: 'aurora',
+    //   routes: [{
+    //     path: '/',
+    //     master: true
+    //   }, ],
+    //   navbar: {
+    //     iosCenterTitle: false,
+    //     auroraCenterTitle: false,
+    //   }
+    // });   
     let messages;
     let messagebar;
 
