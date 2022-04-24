@@ -1,4 +1,9 @@
-# My App
+# Aplikasi Chat App dengan Framework 7
+
+![alt text](https://github.com/Wishnupmi/chat-app/blob/main/chat.jpg)
+
+#Channel Youtube Wishnu Programming : 
+https://youtube.com/shorts/orWG01veOwo?feature=share
 
 ## Framework7 CLI Options
 
